@@ -36,6 +36,7 @@ namespace SmartAssistant.Speech.TTS
 
     public IEnumerator Speak(object text)
     {
+      yield return null;
       // TODO: clean text first!!! (e.g. convert numbers to words)
       string strText = (string) text;
       float[,,] fastspeechOutput = FastspeechInference(ref strText);
@@ -48,7 +49,6 @@ namespace SmartAssistant.Speech.TTS
       AudioClip clip = AudioClip.Create("Speak", sampleLength, 1, 22050, false);
       clip.SetData(audioSample, 0);
       audioSource.PlayOneShot(clip);
-      yield return null;
     }
   }
 }

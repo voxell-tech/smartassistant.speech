@@ -37,8 +37,7 @@ namespace SmartAssistant.Speech.TTS
     {
       print($"TFLite Version: {Interpreter.GetVersion()}");
       // initialize tflite fastspeech and melgan Interpreter
-      _options = new InterpreterOptions() {threads = 4};
-      _options.useNNAPI = true;
+      _options = new InterpreterOptions() {threads = 8};
       _fastspeechInterpreter = new Interpreter(FileUtil.LoadFile(fastspeechFilepath), _options);
       _melganInterpreter = new Interpreter(FileUtil.LoadFile(melganFilepath), _options);
     }
