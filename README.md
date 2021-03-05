@@ -1,0 +1,1 @@
+# Speech functionality for Smart Assistant

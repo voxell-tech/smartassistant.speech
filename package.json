@@ -1,0 +1,17 @@
+{
+  "name": "smartassistant.voxell.speech",
+  "displayName": "SA Speech",
+  "author": "Nixon",
+  "description": "Speech functionality for Smart Assistant (STT and TTS)",
+  "keywords": [
+    "speech",
+    "smart assistant"
+  ],
+  "license": "GPL v3.0",
+  "unity": "2020.2",
+  "unityRelease": "0f1",
+  "version": "0.1.0",
+  "dependencies": {
+    "smartassistant.voxell.core": "0.1.0"
+  }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "SmartAssistant.Speech.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6e1d47a1424c040aca79d8b6a2710888",
+        "GUID:b23efe0d0bd83184681bd63517e3c327"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
