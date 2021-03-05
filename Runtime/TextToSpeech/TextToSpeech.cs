@@ -18,28 +18,37 @@ All rights reserved.
 */
 
 using UnityEngine;
-using TensorFlowLite;
-using System;
+using System.Collections;
 
 namespace SmartAssistant.Speech.TTS
 {
   public partial class TextToSpeech : MonoBehaviour
   {
+    public AudioSource audioSource;
+
     void Start()
     {
       InitTTSProcessor();
       InitTTSInference();
 
-      Speak("Lol");
+      StartCoroutine(Speak("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"));
     }
 
-    public void Speak(string text)
+    public IEnumerator Speak(object text)
     {
       // TODO: clean text first!!! (e.g. convert numbers to words)
-      float[,,] fastspeechOutput = FastspeechInference(ref text);
+      string strText = (string) text;
+      float[,,] fastspeechOutput = FastspeechInference(ref strText);
       float[,,] melganOutput = MelganInference(ref fastspeechOutput);
 
-      print(melganOutput);
+      int sampleLength = melganOutput.GetLength(1);
+      float[] audioSample = new float[sampleLength];
+      for (int s=0; s < sampleLength; s++) audioSample[s] = melganOutput[0, s, 0];
+
+      AudioClip clip = AudioClip.Create("Speak", sampleLength, 1, 22050, false);
+      clip.SetData(audioSample, 0);
+      audioSource.PlayOneShot(clip);
+      yield return null;
     }
   }
 }
