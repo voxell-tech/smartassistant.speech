@@ -29,6 +29,8 @@ namespace SmartAssistant.Speech.TTS
     {
       InitTTSProcessor();
       InitTTSInference();
+
+      Speak("Lol");
     }
 
     public void Speak(string text)
