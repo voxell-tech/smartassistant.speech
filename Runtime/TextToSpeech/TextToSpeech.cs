@@ -18,7 +18,7 @@ All rights reserved.
 */
 
 using UnityEngine;
-using System.Collections;
+using System.Threading.Tasks;
 
 namespace SmartAssistant.Speech.TTS
 {
@@ -31,15 +31,14 @@ namespace SmartAssistant.Speech.TTS
       InitTTSProcessor();
       InitTTSInference();
 
-      StartCoroutine(Speak("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"));
+      Speak("Hello, my name is Vox and I am a smart assistant!");
     }
 
-    public IEnumerator Speak(object text)
+    public void Speak(string text)
     {
-      yield return null;
       // TODO: clean text first!!! (e.g. convert numbers to words)
-      string strText = (string) text;
-      float[,,] fastspeechOutput = FastspeechInference(ref strText);
+      CleanText(ref text);
+      float[,,] fastspeechOutput = FastspeechInference(ref text);
       float[,,] melganOutput = MelganInference(ref fastspeechOutput);
 
       int sampleLength = melganOutput.GetLength(1);
@@ -49,6 +48,12 @@ namespace SmartAssistant.Speech.TTS
       AudioClip clip = AudioClip.Create("Speak", sampleLength, 1, 22050, false);
       clip.SetData(audioSample, 0);
       audioSource.PlayOneShot(clip);
+    }
+
+    public void CleanText(ref string text)
+    {
+      text = text.ToLower();
+      // TODO: also convert numbers to words using the NumberToWords class
     }
   }
 }
