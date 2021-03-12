@@ -27,7 +27,7 @@ namespace SmartAssistant.Speech.TTS
   {
     public string mapperFilepath;
 
-    internal class Mapper
+    internal struct Mapper
     {
       public Dictionary<string, int> symbol_to_id;
       public Dictionary<int, string> id_to_symbol;

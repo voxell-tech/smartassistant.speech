@@ -18,13 +18,18 @@ All rights reserved.
 */
 
 using UnityEngine;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace SmartAssistant.Speech.TTS
 {
   public partial class TextToSpeech : MonoBehaviour
   {
     public AudioSource audioSource;
+
+    private int sampleLength;
+    private float[] audioSample;
+    private AudioClip clip;
+    private bool playAudio = false;
 
     void Start()
     {
@@ -34,20 +39,37 @@ namespace SmartAssistant.Speech.TTS
       Speak("Hello, my name is Vox and I am a smart assistant!");
     }
 
+    void Update()
+    {
+      if (playAudio)
+      {
+        clip = AudioClip.Create("Speak", sampleLength, 1, 22050, false);
+        clip.SetData(audioSample, 0);
+        audioSource.PlayOneShot(clip);
+        playAudio = false;
+        // just for stress test
+        // Speak("Hello, my name is Vox and I am a smart assistant!");
+      }
+    }
+
     public void Speak(string text)
     {
-      // TODO: clean text first!!! (e.g. convert numbers to words)
+      Thread task = new Thread(new ParameterizedThreadStart(SpeakTask));
+      task.Start(text);
+    }
+
+    public void SpeakTask(object inputText)
+    {
+      string text = (string)inputText;
       CleanText(ref text);
       float[,,] fastspeechOutput = FastspeechInference(ref text);
       float[,,] melganOutput = MelganInference(ref fastspeechOutput);
 
-      int sampleLength = melganOutput.GetLength(1);
-      float[] audioSample = new float[sampleLength];
+      sampleLength = melganOutput.GetLength(1);
+      audioSample = new float[sampleLength];
       for (int s=0; s < sampleLength; s++) audioSample[s] = melganOutput[0, s, 0];
-
-      AudioClip clip = AudioClip.Create("Speak", sampleLength, 1, 22050, false);
-      clip.SetData(audioSample, 0);
-      audioSource.PlayOneShot(clip);
+      playAudio = true;
+      print("Audio played");
     }
 
     public void CleanText(ref string text)

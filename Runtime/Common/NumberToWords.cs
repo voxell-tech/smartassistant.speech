@@ -18,7 +18,6 @@ All rights reserved.
 */
 
 using System;
-using UnityEngine;
 
 namespace SmartAssistant.Speech
 {
