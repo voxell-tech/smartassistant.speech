@@ -14,7 +14,7 @@ To prevent Unity from freezing when inferencing the TFLite model, we run the inf
 
 In progress...
 
-### How to use?
+## How to use?
 
 All TFLite model inferencing will not be possible without the help of the [Unity TFLite](https://github.com/asus4/tf-lite-unity-sample) repository.
 
