@@ -62,7 +62,8 @@ namespace SmartAssistant.Speech.TTS
     {
       string text = (string)inputText;
       CleanText(ref text);
-      float[,,] fastspeechOutput = FastspeechInference(ref text);
+      int[] inputIDs = TextToSequence(text);
+      float[,,] fastspeechOutput = FastspeechInference(ref inputIDs);
       float[,,] melganOutput = MelganInference(ref fastspeechOutput);
 
       sampleLength = melganOutput.GetLength(1);

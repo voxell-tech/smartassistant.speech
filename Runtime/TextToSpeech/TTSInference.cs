@@ -67,10 +67,9 @@ namespace SmartAssistant.Speech.TTS
     /// Inferencing fastspeech tflite model by taking in text and converting them into spectogram
     /// </summary>
     /// <param name="text">input text</param>
-    private float[,,] FastspeechInference(ref string text)
+    private float[,,] FastspeechInference(ref int[] inputIDs)
     {
       // resize the input tensors to fit the size of inputIDs
-      int[] inputIDs = TextToSequence(text);
       _fastspeechInterpreter.ResizeInputTensor(0, new int[2]{1, inputIDs.Length});
       _fastspeechInterpreter.ResizeInputTensor(1, new int[1]{1});
       _fastspeechInterpreter.ResizeInputTensor(2, new int[1]{1});
