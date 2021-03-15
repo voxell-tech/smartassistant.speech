@@ -19,6 +19,7 @@ All rights reserved.
 
 using TensorFlowLite;
 using System;
+using UnityEngine;
 
 namespace SmartAssistant.Speech.TTS
 {
@@ -26,18 +27,21 @@ namespace SmartAssistant.Speech.TTS
   {
     public string fastspeechFilepath;
     public string melganFilepath;
+    [Tooltip("The ID of the speaker, currently will not affect the speech yet.")]
     public int speakerID = 1;
+    [Range(0.0f, 1.0f), Tooltip("The lower, the faster the speed!")]
     public float speedRatio = 1.0f;
 
     private Interpreter _fastspeechInterpreter;
     private Interpreter _melganInterpreter;
     private InterpreterOptions _options;
 
+    /// <summary>
+    /// Create Fastspeech and Melgan interpreters
+    /// </summary>
     void InitTTSInference()
     {
-      print($"TFLite Version: {Interpreter.GetVersion()}");
-      // initialize tflite fastspeech and melgan Interpreter
-      _options = new InterpreterOptions() {threads = 8};
+      _options = new InterpreterOptions() {threads = 4};
       _fastspeechInterpreter = new Interpreter(FileUtil.LoadFile(fastspeechFilepath), _options);
       _melganInterpreter = new Interpreter(FileUtil.LoadFile(melganFilepath), _options);
     }
@@ -56,6 +60,7 @@ namespace SmartAssistant.Speech.TTS
 
       int[,] formatedInputIDS = new int[1, inputIDs.Length];
       for (int i=0; i < inputIDs.Length; i++) formatedInputIDS[0, i] = inputIDs[i];
+      speedRatio = Mathf.Clamp(speedRatio, 0.0f, 1.0f);
       inputData[0] = formatedInputIDS;
       inputData[1] = new int[1]{speakerID};
       inputData[2] = new float[1]{speedRatio};
@@ -69,21 +74,17 @@ namespace SmartAssistant.Speech.TTS
     /// <param name="text">input text</param>
     private float[,,] FastspeechInference(ref int[] inputIDs)
     {
-      // resize the input tensors to fit the size of inputIDs
       _fastspeechInterpreter.ResizeInputTensor(0, new int[2]{1, inputIDs.Length});
       _fastspeechInterpreter.ResizeInputTensor(1, new int[1]{1});
       _fastspeechInterpreter.ResizeInputTensor(2, new int[1]{1});
 
-      // allocate tensors and set input data
       _fastspeechInterpreter.AllocateTensors();
       Array[] inputData = PrepareInput(ref inputIDs, ref speakerID, ref speedRatio);
-      for (int d=0; d < 3; d++)
+      for (int d=0; d < inputData.Length; d++)
         _fastspeechInterpreter.SetInputTensorData(d, inputData[d]);
 
-      // run the interpreter
       _fastspeechInterpreter.Invoke();
 
-      // obtaining the output from the model
       int[] outputShape = _fastspeechInterpreter.GetOutputTensorInfo(1).shape;
       float[,,] outputData = new float[outputShape[0], outputShape[1], outputShape[2]];
       _fastspeechInterpreter.GetOutputTensorData(1, outputData);
@@ -97,20 +98,16 @@ namespace SmartAssistant.Speech.TTS
     /// <returns></returns>
     private float[,,] MelganInference(ref float[,,] spectogram)
     {
-      // resize input tensors to fit the size of spectogram
       _melganInterpreter.ResizeInputTensor(0, new int[3]{
         spectogram.GetLength(0),
         spectogram.GetLength(1),
         spectogram.GetLength(2)});
 
-      // allocate tensors and set input data
       _melganInterpreter.AllocateTensors();
       _melganInterpreter.SetInputTensorData(0, spectogram);
 
-      // run the interpreter
       _melganInterpreter.Invoke();
 
-      // obtaining the output from the model
       int[] outputShape = _melganInterpreter.GetOutputTensorInfo(0).shape;
       float[,,] outputData = new float[outputShape[0], outputShape[1], outputShape[2]];
       _melganInterpreter.GetOutputTensorData(0, outputData);

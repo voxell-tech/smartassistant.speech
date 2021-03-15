@@ -13,5 +13,14 @@
   "version": "0.1.0",
   "dependencies": {
     "smartassistant.voxell.core": "0.1.0"
-  }
+  },
+
+  "samples":
+  [
+    {
+      "displayName": "SpeechExample",
+      "description": "TTS and STT examples",
+      "path": "Samples/SpeechExample"
+    }
+  ]
 }

@@ -29,26 +29,23 @@ namespace SmartAssistant.Speech.TTS
     private int sampleLength;
     private float[] audioSample;
     private AudioClip clip;
-    private bool playAudio = false;
+    [HideInInspector]
+    public bool playingAudio = false;
 
     void Start()
     {
       InitTTSProcessor();
       InitTTSInference();
-
-      Speak("Hello, my name is Vox and I am a smart assistant!");
     }
 
     void Update()
     {
-      if (playAudio)
+      if (playingAudio)
       {
         clip = AudioClip.Create("Speak", sampleLength, 1, 22050, false);
         clip.SetData(audioSample, 0);
         audioSource.PlayOneShot(clip);
-        playAudio = false;
-        // just for stress test
-        // Speak("Hello, my name is Vox and I am a smart assistant!");
+        playingAudio = false;
       }
     }
 
@@ -58,7 +55,7 @@ namespace SmartAssistant.Speech.TTS
       task.Start(text);
     }
 
-    public void SpeakTask(object inputText)
+    private void SpeakTask(object inputText)
     {
       string text = (string)inputText;
       CleanText(ref text);
@@ -69,8 +66,7 @@ namespace SmartAssistant.Speech.TTS
       sampleLength = melganOutput.GetLength(1);
       audioSample = new float[sampleLength];
       for (int s=0; s < sampleLength; s++) audioSample[s] = melganOutput[0, s, 0];
-      playAudio = true;
-      print("Audio played");
+      playingAudio = true;
     }
 
     public void CleanText(ref string text)

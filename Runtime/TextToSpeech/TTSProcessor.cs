@@ -18,8 +18,8 @@ All rights reserved.
 */
 
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using System;
 
 namespace SmartAssistant.Speech.TTS
 {
@@ -59,9 +59,9 @@ namespace SmartAssistant.Speech.TTS
       return sequence.ToArray();
     }
 
-    private static bool _ShouldKeepSymbol(char symbol)
-    {
-      return symbol != '_' && symbol != '~';
-    }
+    private static bool _ShouldKeepSymbol(char symbol) =>
+      symbol != '_' &&
+      symbol != '~' &&
+      Convert.ToUInt16(symbol) != 8203;
   }
 }

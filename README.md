@@ -20,7 +20,7 @@ All TFLite model inferencing will not be possible without the help of the [Unity
 
 1. Clone the repository mentioned above.
 2. Go into the Packages folder and copy the `com.github.asus4.tflite` folder into your project's Packages folder.
-3. Clone this repository into your project's Packages folder.
+3. Clone this repository and the [Core Repository](https://github.com/voxell-tech/smartassistant.core) into your project's Packages folder.
 4. And you are ready to go!
 
 ## Support the project!
