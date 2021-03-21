@@ -29,6 +29,7 @@ namespace SmartAssistant.Speech.TTS
     private int sampleLength;
     private float[] audioSample;
     private AudioClip clip;
+    private Thread speakThread;
     [HideInInspector]
     public bool playingAudio = false;
 
@@ -49,13 +50,15 @@ namespace SmartAssistant.Speech.TTS
       }
     }
 
+    void OnDisable() => speakThread?.Abort();
+
     public void Speak(string text)
     {
-      Thread task = new Thread(new ParameterizedThreadStart(SpeakTask));
-      task.Start(text);
+      speakThread = new Thread(new ParameterizedThreadStart(SpeakspeakThread));
+      speakThread.Start(text);
     }
 
-    private void SpeakTask(object inputText)
+    private void SpeakspeakThread(object inputText)
     {
       string text = (string)inputText;
       CleanText(ref text);

@@ -1,8 +1,8 @@
-# Speech functionality for Smart Assistant
+# End to end Speech Processing Package In Unity
 
 ## What does this repository contatins??
 
-This repository provides a fully functional end to end Text To Speech and Speech To Text solution intergrated in Unity with C#!!! Anyone can use this repo in any way they want as long as they credit the author and also respect the [license](LICENSE) agreement.
+This repository provides a fully functional end to end Text To Speech and Speech To Text solution using deep learning models intergrated in Unity with C#!!! Anyone can use this repo in any way they want as long as they credit the author(s) and also respect the [license](LICENSE) agreement.
 
 ### Text To Speech
 

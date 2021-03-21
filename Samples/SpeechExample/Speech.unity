@@ -312,10 +312,10 @@ RectTransform:
   m_Father: {fileID: 1441786685}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -426, y: -0.0000076294}
-  m_SizeDelta: {x: 760.941, y: 113.308}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -122.22101, y: 0}
+  m_SizeDelta: {x: -401.5, y: 113.30798}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382821892
 MonoBehaviour:
@@ -621,10 +621,10 @@ RectTransform:
   m_Father: {fileID: 1441786685}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 286, y: 0}
-  m_SizeDelta: {x: 182.759, y: 91.774}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -157.5, y: 0}
+  m_SizeDelta: {x: 183.75903, y: 91.77399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1192336665
 MonoBehaviour:
@@ -998,7 +998,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d12b5d1a7630c4e9cdd46a260ec6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conformerFilepath: TFLiteModels/STTEngine/subword_conformer.tflite
+  conformerFilepath: TFLiteModels/STTEngine/deepspeech-0.9.3-models.tflite
   audioClip: {fileID: 8300000, guid: 45ca593940f051c4d8901f7fc4aa99a5, type: 3}
   recognized: 0
   recognizedWords: 
@@ -1036,10 +1036,10 @@ RectTransform:
   m_Father: {fileID: 1320438541}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 271.599}
-  m_SizeDelta: {x: 1770.883, y: 463.537}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: -268.401}
+  m_SizeDelta: {x: -149.11694, y: 463.537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441786686
 MonoBehaviour:
@@ -1355,7 +1355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3890c01b820c4a7478712d6b2f5e5a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputField: {fileID: 1240100819}
+  inputField: {fileID: 382821892}
   textToSpeech: {fileID: 1599897166}
 --- !u!1 &1841216244
 GameObject:
@@ -1458,7 +1458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.49999237}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963561653
@@ -1507,10 +1507,10 @@ RectTransform:
   m_Father: {fileID: 1320438541}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -272}
-  m_SizeDelta: {x: 1770.883, y: 463.537}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 268}
+  m_SizeDelta: {x: -149.11694, y: 463.537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1984822663
 MonoBehaviour:

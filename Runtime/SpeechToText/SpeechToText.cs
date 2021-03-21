@@ -26,6 +26,7 @@ namespace SmartAssistant.Speech.STT
   {
     public AudioClip audioClip;
 
+    private Thread recognizeThread;
     [HideInInspector]
     public bool recognized = false;
     [HideInInspector]
@@ -47,12 +48,14 @@ namespace SmartAssistant.Speech.STT
       }
     }
 
+    void OnDisable() => recognizeThread?.Abort();
+
     public void Recognize(AudioClip clip)
     {
       float[] clipData = new float[clip.samples];
       clip.GetData(clipData, 0);
-      Thread task = new Thread(new ParameterizedThreadStart(RecognizeTask));
-      task.Start(clipData);
+      recognizeThread = new Thread(new ParameterizedThreadStart(RecognizeTask));
+      recognizeThread.Start(clipData);
     }
 
     private void RecognizeTask(object clipData)
