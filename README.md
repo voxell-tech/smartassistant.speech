@@ -1,8 +1,8 @@
 # End to end Speech Processing Package In Unity
 
-## What does this repository contatins??
+## What does this package contatins??
 
-This repository provides a fully functional cross platform end to end speech engine (Text To Speech and Speech To Text) using deep learning models intergrated in Unity with C#!!! Anyone can use this repo in any way they want as long as they credit the author(s) and also respect the [license](LICENSE) agreement.
+This package provides a fully functional cross platform end to end speech engine (Text To Speech and Speech To Text) using deep learning models intergrated in Unity with C#!!! Anyone can use this package in any way they want as long as they credit the author(s) and also respect the [license](LICENSE) agreement.
 
 ### Text To Speech
 
@@ -31,4 +31,4 @@ This project is part of the [Smart Assistant](https://github.com/voxell-tech/Sma
 
 Smart Assistant as a whole is licensed under the GNU Public License, Version 3. Individual files may have a different, but compatible license.
 
-See [license file](./LICENSE.md) for details.
+See [license file](./LICENSE) for details.

@@ -971,7 +971,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1381762363
 Transform:
   m_ObjectHideFlags: 0
@@ -998,10 +998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49d12b5d1a7630c4e9cdd46a260ec6ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conformerFilepath: TFLiteModels/STTEngine/deepspeech-0.9.3-models.tflite
-  audioClip: {fileID: 8300000, guid: 45ca593940f051c4d8901f7fc4aa99a5, type: 3}
+  audioClip: {fileID: 8300000, guid: 068597a3453657b48a166d4c914f06d4, type: 3}
   recognized: 0
   recognizedWords: 
+  deepspeechFilepath: TFLiteModels/STTEngine/deepspeech-0.9.3-models.tflite
 --- !u!1 &1441786684
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,13 +1240,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668ff5ca54c330443a444fb0cab5987c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 1599897167}
+  playingAudio: 0
   fastspeechFilepath: TFLiteModels/TTSEngine/fastspeech_quant.tflite
   melganFilepath: TFLiteModels/TTSEngine/melgan_quant.tflite
   speakerID: 1
   speedRatio: 1
   mapperFilepath: TFLiteModels/TTSEngine/ljspeech_mapper.json
-  audioSource: {fileID: 1599897167}
-  playingAudio: 0
 --- !u!82 &1599897167
 AudioSource:
   m_ObjectHideFlags: 0

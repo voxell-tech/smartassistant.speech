@@ -25,6 +25,7 @@ namespace SmartAssistant.Speech.TTS
   public partial class TextToSpeech : MonoBehaviour
   {
     public AudioSource audioSource;
+    public LogImportance debugLevel;
 
     private int sampleLength;
     private float[] audioSample;
@@ -32,11 +33,13 @@ namespace SmartAssistant.Speech.TTS
     private Thread speakThread;
     [HideInInspector]
     public bool playingAudio = false;
+    private Logging logger;
 
     void Start()
     {
       InitTTSProcessor();
       InitTTSInference();
+      logger = new Logging(debugLevel);
     }
 
     void Update()
@@ -50,7 +53,10 @@ namespace SmartAssistant.Speech.TTS
       }
     }
 
-    void OnDisable() => speakThread?.Abort();
+    void OnDisable()
+    {
+      speakThread?.Abort();
+    }
 
     public void Speak(string text)
     {

@@ -24,27 +24,20 @@ namespace SmartAssistant.Speech.STT
 {
   public partial class SpeechToText
   {
-    public string conformerFilepath;
+    public string deepspeechFilepath;
 
-    private const int numRNNs = 1;
-    private const int nStates = 2;
-    private const int stateSize = 320;
-    private int[,,,] states = new int[numRNNs, nStates, 1, stateSize];
-    private Interpreter _conformerInterpreter;
+    private Interpreter _deepspeechInterpreter;
     private InterpreterOptions _options;
 
+    private const int inferenceSize = 512;
+
     /// <summary>
-    /// Create Conformer interpreter
+    /// Create Deepspeech interpreter
     /// </summary>
     void InitSTTInference()
     {
       _options = new InterpreterOptions() {threads = 4};
-      _conformerInterpreter = new Interpreter(FileUtil.LoadFile(conformerFilepath), _options);
-
-      for (int i=0; i < numRNNs; i++)
-        for (int j=0; j < nStates; j++)
-          for (int k=0; k < stateSize; k++)
-            states[i, j, 0, k] = 0;
+      _deepspeechInterpreter = new Interpreter(FileUtil.LoadFile(deepspeechFilepath), _options);
     }
 
     #region Inferencing
@@ -54,29 +47,37 @@ namespace SmartAssistant.Speech.STT
       Array[] inputData = new Array[3];
 
       inputData[0] = inputStream;
-      inputData[1] = new int[1];
-      inputData[2] = states;
 
       return inputData;
     }
 
-
-    private char[] ConformerInference(ref float[] inputStream)
+    private char[] DeepspeechInference(ref float[] inputStream)
     {
-      _conformerInterpreter.ResizeInputTensor(0, new int[1]{inputStream.Length});
+      _deepspeechInterpreter.ResizeInputTensor(0, new int[1]{inputStream.Length});
 
-      _conformerInterpreter.AllocateTensors();
+      _deepspeechInterpreter.AllocateTensors();
       Array[] inputData = PrepareInput(ref inputStream);
 
       for (int d=0; d < inputData.Length; d++)
-        _conformerInterpreter.SetInputTensorData(d, inputData[d]);
+        _deepspeechInterpreter.SetInputTensorData(d, inputData[d]);
 
-      _conformerInterpreter.Invoke();
+      _deepspeechInterpreter.Invoke();
 
-      int[] outputShape = _conformerInterpreter.GetOutputTensorInfo(0).shape;
+      int[] outputShape = _deepspeechInterpreter.GetOutputTensorInfo(0).shape;
       char[] outputData = new char[outputShape[0]];
-      _conformerInterpreter.GetOutputTensorData(0, outputData);
+      _deepspeechInterpreter.GetOutputTensorData(0, outputData);
       return outputData;
+    }
+
+    private float[][] SplitStream(ref float[] inputStream)
+    {
+      int totalSplits = MathUtils.CalculateSplit(inputStream.Length, inferenceSize);
+
+      float[][] streams = new float[totalSplits][];
+
+      // for ()
+
+      return streams;
     }
     #endregion
   }

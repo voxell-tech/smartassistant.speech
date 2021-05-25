@@ -35,7 +35,8 @@ namespace SmartAssistant.Speech.STT
     void Start()
     {
       InitSTTInference();
-      // print(TensorFlowLite.Interpreter.GetVersion());
+      print(audioClip.samples);
+      print(MathUtils.CalculateSplit(audioClip.samples, inferenceSize));
       // Recognize(audioClip);
     }
 
@@ -48,7 +49,10 @@ namespace SmartAssistant.Speech.STT
       }
     }
 
-    void OnDisable() => recognizeThread?.Abort();
+    void OnDisable()
+    {
+      recognizeThread?.Abort();
+    }
 
     public void Recognize(AudioClip clip)
     {
@@ -61,7 +65,7 @@ namespace SmartAssistant.Speech.STT
     private void RecognizeTask(object clipData)
     {
       float[] inputStream = (float[])clipData;
-      char[] conformerOutput = ConformerInference(ref inputStream);
+      char[] conformerOutput = DeepspeechInference(ref inputStream);
       recognizedWords = conformerOutput.ToString();
       recognized = true;
     }

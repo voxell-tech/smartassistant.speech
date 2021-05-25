@@ -52,7 +52,11 @@ namespace SmartAssistant.Speech.TTS
 
       foreach (char l in text)
       {
-        if (_ShouldKeepSymbol(l)) sequence.Add(_mapper.symbol_to_id[l.ToString()]);
+        if (_ShouldKeepSymbol(l))
+        {
+          try { sequence.Add(_mapper.symbol_to_id[l.ToString()]); }
+          catch { logger.ConditionalLog($"Symbol not in dictionary: {l}", LogImportance.Critical, LogStyle.Warning); }
+        }
       }
 
       sequence.Add(_mapper.symbol_to_id["eos"]);
