@@ -27,16 +27,14 @@ namespace SmartAssistant.Speech.STT
     public AudioClip audioClip;
 
     private Thread recognizeThread;
-    [HideInInspector]
-    public bool recognized = false;
-    [HideInInspector]
-    public string recognizedWords;
+    [HideInInspector] public bool recognized = false;
+    [HideInInspector] public string recognizedWords;
 
     void Start()
     {
       InitSTTInference();
       print(audioClip.samples);
-      print(MathUtils.CalculateSplit(audioClip.samples, inferenceSize));
+      print(MathUtil.CalculateSplit(audioClip.samples, inferenceSize));
       // Recognize(audioClip);
     }
 

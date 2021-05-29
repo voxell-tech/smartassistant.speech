@@ -71,7 +71,7 @@ namespace SmartAssistant.Speech.STT
 
     private float[][] SplitStream(ref float[] inputStream)
     {
-      int totalSplits = MathUtils.CalculateSplit(inputStream.Length, inferenceSize);
+      int totalSplits = MathUtil.CalculateSplit(inputStream.Length, inferenceSize);
 
       float[][] streams = new float[totalSplits][];
 

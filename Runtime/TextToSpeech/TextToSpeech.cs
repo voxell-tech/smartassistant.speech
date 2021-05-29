@@ -31,8 +31,7 @@ namespace SmartAssistant.Speech.TTS
     private float[] audioSample;
     private AudioClip clip;
     private Thread speakThread;
-    [HideInInspector]
-    public bool playingAudio = false;
+    [HideInInspector] public bool playingAudio = false;
     private Logging logger;
 
     void Start()
