@@ -34,7 +34,7 @@ namespace SmartAssistant.Speech.STT
     {
       InitSTTInference();
       print(audioClip.samples);
-      print(MathUtil.CalculateSplit(audioClip.samples, inferenceSize));
+      print(MathUtil.CalculateGrids(audioClip.samples, inferenceSize));
       // Recognize(audioClip);
     }
 

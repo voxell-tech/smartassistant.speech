@@ -37,7 +37,7 @@ namespace SmartAssistant.Speech.STT
     void InitSTTInference()
     {
       _options = new InterpreterOptions() {threads = 4};
-      _deepspeechInterpreter = new Interpreter(FileUtil.LoadFile(deepspeechFilepath), _options);
+      _deepspeechInterpreter = new Interpreter(FileUtil.LoadStreamingAssetFile(deepspeechFilepath), _options);
     }
 
     #region Inferencing
@@ -71,7 +71,7 @@ namespace SmartAssistant.Speech.STT
 
     private float[][] SplitStream(ref float[] inputStream)
     {
-      int totalSplits = MathUtil.CalculateSplit(inputStream.Length, inferenceSize);
+      int totalSplits = MathUtil.CalculateGrids(inputStream.Length, inferenceSize);
 
       float[][] streams = new float[totalSplits][];
 

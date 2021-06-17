@@ -42,8 +42,8 @@ namespace SmartAssistant.Speech.TTS
     void InitTTSInference()
     {
       _options = new InterpreterOptions() {threads = 4};
-      _fastspeechInterpreter = new Interpreter(FileUtil.LoadFile(fastspeechFilepath), _options);
-      _melganInterpreter = new Interpreter(FileUtil.LoadFile(melganFilepath), _options);
+      _fastspeechInterpreter = new Interpreter(FileUtil.LoadStreamingAssetFile(fastspeechFilepath), _options);
+      _melganInterpreter = new Interpreter(FileUtil.LoadStreamingAssetFile(melganFilepath), _options);
     }
 
     #region Inferencing

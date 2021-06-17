@@ -37,7 +37,7 @@ namespace SmartAssistant.Speech.TTS
 
     private void InitTTSProcessor()
     {
-      string json = FileUtil.ReadFile(mapperFilepath);
+      string json = FileUtil.ReadStreamingAssetFile(mapperFilepath);
       _mapper = JsonConvert.DeserializeObject<Mapper>(json);
     }
 
