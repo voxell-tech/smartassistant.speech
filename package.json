@@ -1,24 +1,24 @@
 {
-  "name": "smartassistant.voxell.speech",
-  "displayName": "SA Speech",
+  "name": "voxell.speech",
+  "displayName": "VX Speech Engine",
   "author": "Nixon",
-  "description": "Speech functionality for Smart Assistant (STT and TTS)",
+  "description": "Speech functionality for Unity (TTS and ASR)",
   "keywords": [
     "speech",
-    "smart assistant"
+    "voxell"
   ],
   "license": "GPL v3.0",
   "unity": "2020.2",
   "unityRelease": "0f1",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "dependencies": {
-    "smartassistant.voxell.core": "1.0.0",
+    "voxell.core": "1.0.0",
     "com.github.asus4.tflite": "2.4.1"
   },
   "samples": [
     {
       "displayName": "SpeechExample",
-      "description": "TTS and STT examples",
+      "description": "TTS and ASR examples",
       "path": "Samples/SpeechExample"
     }
   ]
