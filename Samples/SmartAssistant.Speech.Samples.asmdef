@@ -1,5 +1,5 @@
 {
-    "name": "SmartAssistant.Speech.Samples",
+    "name": "Voxell.Speech.Samples",
     "rootNamespace": "",
     "references": [
         "GUID:87cb64168a5f7104bbbae7d0fb35581c",

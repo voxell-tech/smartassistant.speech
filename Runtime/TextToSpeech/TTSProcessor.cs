@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
 
-namespace SmartAssistant.Speech.TTS
+namespace Voxell.Speech.TTS
 {
   public partial class TextToSpeech
   {

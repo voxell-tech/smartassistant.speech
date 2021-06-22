@@ -671,7 +671,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1599897168}
-        m_TargetAssemblyTypeName: SmartAssistant.Speech.TTS.Demo.TTSDemo, Assembly-CSharp
+        m_TargetAssemblyTypeName: Voxell.Speech.TTS.Demo.TTSDemo, Assembly-CSharp
         m_MethodName: SpeakInput
         m_Mode: 1
         m_Arguments:

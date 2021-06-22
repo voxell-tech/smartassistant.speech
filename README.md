@@ -25,9 +25,7 @@ All TFLite model inferencing will not be possible without the help of the [Unity
 
 ## Support the project!
 
-This project is part of the [Smart Assistant](https://github.com/voxell-tech/SmartAssistant) project. If you feel like supporting the development of this project, simply click the "Sponsor" button on this page or support us on [Patreon](https://www.patreon.com/smartassistant)! Thank you!
-
-<a href="https://www.patreon.com/smartassistant" target="_blank">
+<a href="https://www.patreon.com/voxelltech" target="_blank">
   <img src="https://teaprincesschronicles.files.wordpress.com/2020/03/support-me-on-patreon.png" alt="patreon" width="200px" height="55px"/>
 </a>
 

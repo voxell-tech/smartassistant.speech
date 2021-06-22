@@ -21,7 +21,7 @@ using TMPro;
 using UnityEngine;
 
 
-namespace SmartAssistant.Speech.TTS.Demo
+namespace Voxell.Speech.TTS.Demo
 {
   public class TTSDemo : MonoBehaviour
   {

@@ -20,7 +20,7 @@ All rights reserved.
 using UnityEngine;
 using System.Threading;
 
-namespace SmartAssistant.Speech.STT
+namespace Voxell.Speech.STT
 {
   public partial class SpeechToText : MonoBehaviour
   {

@@ -19,7 +19,7 @@ All rights reserved.
 
 using System;
 
-namespace SmartAssistant.Speech
+namespace Voxell.Speech
 {
   class NumberToWords
   {

@@ -21,7 +21,7 @@ using TensorFlowLite;
 using System;
 using UnityEngine;
 
-namespace SmartAssistant.Speech.TTS
+namespace Voxell.Speech.TTS
 {
   public partial class TextToSpeech
   {

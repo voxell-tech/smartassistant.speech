@@ -20,7 +20,7 @@ All rights reserved.
 using TensorFlowLite;
 using System;
 
-namespace SmartAssistant.Speech.STT
+namespace Voxell.Speech.STT
 {
   public partial class SpeechToText
   {
