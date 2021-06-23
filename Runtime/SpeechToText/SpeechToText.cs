@@ -19,6 +19,7 @@ All rights reserved.
 
 using UnityEngine;
 using System.Threading;
+using Voxell.Mathx;
 
 namespace Voxell.Speech.STT
 {

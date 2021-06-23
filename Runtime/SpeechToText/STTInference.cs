@@ -19,6 +19,7 @@ All rights reserved.
 
 using TensorFlowLite;
 using System;
+using Voxell.Mathx;
 
 namespace Voxell.Speech.STT
 {
