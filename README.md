@@ -1,4 +1,4 @@
-# End to end Speech Processing Package In Unity
+# End to end Speech Engine In Unity
 
 ## What does this package contatins??
 
@@ -35,6 +35,6 @@ All TFLite model inferencing will not be possible without the help of the [Unity
 
 ## License
 
-Smart Assistant as a whole is licensed under the GNU Public License, Version 3. Individual files may have a different, but compatible license.
+This repository as a whole is licensed under the GNU Public License, Version 3. Individual files may have a different, but compatible license.
 
 See [license file](./LICENSE) for details.

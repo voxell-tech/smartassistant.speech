@@ -59,13 +59,13 @@ namespace Voxell.Speech.TTS
 
     public void Speak(string text)
     {
-      speakThread = new Thread(new ParameterizedThreadStart(SpeakspeakThread));
+      speakThread = new Thread(new ParameterizedThreadStart(SpeakTask));
       speakThread.Start(text);
     }
 
-    private void SpeakspeakThread(object inputText)
+    private void SpeakTask(object inputText)
     {
-      string text = (string)inputText;
+      string text = inputText as string;
       CleanText(ref text);
       int[] inputIDs = TextToSequence(text);
       float[,,] fastspeechOutput = FastspeechInference(ref inputIDs);
