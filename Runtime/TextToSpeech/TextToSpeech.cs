@@ -25,42 +25,40 @@ namespace Voxell.Speech.TTS
   public partial class TextToSpeech : MonoBehaviour
   {
     public AudioSource audioSource;
-    public LogImportance debugLevel;
+    public Logging logger;
 
     private int sampleLength;
-    private float[] audioSample;
-    private AudioClip clip;
-    private Thread speakThread;
-    [HideInInspector] public bool playingAudio = false;
-    private Logging logger;
+    private float[] _audioSample;
+    private AudioClip _audioClip;
+    private Thread _speakThread;
+    private bool _playAudio = false;
 
     void Start()
     {
       InitTTSProcessor();
       InitTTSInference();
-      logger = new Logging(debugLevel);
     }
 
     void Update()
     {
-      if (playingAudio)
+      if (_playAudio)
       {
-        clip = AudioClip.Create("Speak", sampleLength, 1, 22050, false);
-        clip.SetData(audioSample, 0);
-        audioSource.PlayOneShot(clip);
-        playingAudio = false;
+        _audioClip = AudioClip.Create("Speak", sampleLength, 1, 22050, false);
+        _audioClip.SetData(_audioSample, 0);
+        audioSource.PlayOneShot(_audioClip);
+        _playAudio = false;
       }
     }
 
     void OnDisable()
     {
-      speakThread?.Abort();
+      _speakThread?.Abort();
     }
 
     public void Speak(string text)
     {
-      speakThread = new Thread(new ParameterizedThreadStart(SpeakTask));
-      speakThread.Start(text);
+      _speakThread = new Thread(new ParameterizedThreadStart(SpeakTask));
+      _speakThread.Start(text);
     }
 
     private void SpeakTask(object inputText)
@@ -72,9 +70,9 @@ namespace Voxell.Speech.TTS
       float[,,] melganOutput = MelganInference(ref fastspeechOutput);
 
       sampleLength = melganOutput.GetLength(1);
-      audioSample = new float[sampleLength];
-      for (int s=0; s < sampleLength; s++) audioSample[s] = melganOutput[0, s, 0];
-      playingAudio = true;
+      _audioSample = new float[sampleLength];
+      for (int s=0; s < sampleLength; s++) _audioSample[s] = melganOutput[0, s, 0];
+      _playAudio = true;
     }
 
     public void CleanText(ref string text)

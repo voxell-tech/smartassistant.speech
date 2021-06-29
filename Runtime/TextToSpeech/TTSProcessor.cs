@@ -37,7 +37,7 @@ namespace Voxell.Speech.TTS
 
     private void InitTTSProcessor()
     {
-      string json = FileUtil.ReadStreamingAssetFile(mapperFilepath);
+      string json = FileUtil.ReadStreamingAssetFileText(mapperFilepath);
       _mapper = JsonConvert.DeserializeObject<Mapper>(json);
     }
 

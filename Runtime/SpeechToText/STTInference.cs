@@ -20,12 +20,13 @@ All rights reserved.
 using TensorFlowLite;
 using System;
 using Voxell.Mathx;
+using Voxell.DeepLearning;
 
 namespace Voxell.Speech.STT
 {
   public partial class SpeechToText
   {
-    public string deepspeechFilepath;
+    public TFLiteAsset deepspeech;
 
     private Interpreter _deepspeechInterpreter;
     private InterpreterOptions _options;
@@ -38,7 +39,7 @@ namespace Voxell.Speech.STT
     void InitSTTInference()
     {
       _options = new InterpreterOptions() {threads = 4};
-      _deepspeechInterpreter = new Interpreter(FileUtil.LoadStreamingAssetFile(deepspeechFilepath), _options);
+      _deepspeechInterpreter = new Interpreter(FileUtil.ReadAssetFileByte(deepspeech), _options);
     }
 
     #region Inferencing
