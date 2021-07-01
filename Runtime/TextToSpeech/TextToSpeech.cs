@@ -25,7 +25,7 @@ namespace Voxell.Speech.TTS
   public partial class TextToSpeech : MonoBehaviour
   {
     public AudioSource audioSource;
-    public Logging logger;
+    public Logger logger;
 
     private int sampleLength;
     private float[] _audioSample;

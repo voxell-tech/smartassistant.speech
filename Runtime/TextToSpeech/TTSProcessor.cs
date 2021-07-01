@@ -17,6 +17,7 @@ The Original Code is Copyright (C) 2020 Voxell Technologies.
 All rights reserved.
 */
 
+using UnityEngine;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
@@ -55,7 +56,7 @@ namespace Voxell.Speech.TTS
         if (_ShouldKeepSymbol(l))
         {
           try { sequence.Add(_mapper.symbol_to_id[l.ToString()]); }
-          catch { logger.ConditionalLog($"Symbol not in dictionary: {l}", LogImportance.Critical, LogStyle.Warning); }
+          catch { logger.ConditionalLog($"Symbol not in dictionary: {l}", LogImportance.Critical, LogType.Warning); }
         }
       }
 
